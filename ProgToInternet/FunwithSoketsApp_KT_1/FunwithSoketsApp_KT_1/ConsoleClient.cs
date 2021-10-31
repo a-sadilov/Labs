@@ -75,7 +75,7 @@ namespace FunwithSoketsApp_KT_1
             foreach (ConsoleListener a in ConsoleListener.servers) 
             {
                 if (this.mcastAddress.Equals(a.mcastAddress))
-                    Console.WriteLine("Host: {0}\t IP: {1}", a.HostName, a.localIPAddr);
+                    Console.WriteLine("Host: {0}\t IP: {1}\t Port: {2}", a.HostName, a.localIPAddr, a.mcastPort);
             }
         }
         static void Main(string[] args)
@@ -96,12 +96,12 @@ namespace FunwithSoketsApp_KT_1
 
                 ConsoleClient client = new ConsoleClient();
                 client.JoinMulticastGroup("224.168.100.2");
-                Thread.Sleep(1000);
                 client.GetListenersInfo();
                 server.ListenAsync();
                 server2.ListenAsync();
                 server3.ListenAsync();
                 client.BroadcastMessage("Whats up?");
+
             }
             catch (Exception ex)
             {
